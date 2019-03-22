@@ -6,26 +6,21 @@ class Calc:
 def _str_(self):
     return "Carga: " + str(self.bateria)
 
-def recarregar(self):
-    valor = int(input("digite a carga "))
+def recarregar(self, valor):
     self.bateria +=  valor
     if self.bateria > self.bateriaMax:
         self.bateria = self.bateriaMax
 
 
-def soma(self):
+def soma(self, a, b):
     if self.bateria != 0:
-        a = int(input("digite o numero "))
-        b = int(input("digite o numero "))
         self.bateria -= 1
         return str(a+b)
     else:
         return "Bateria insuficiente"
 
-def div(self):
+def divisao (self, a, b):
     if self.bateria != 0:
-        a = int(input("digite o numero "))
-        b = int(input("digite o numero "))
         self.bateria -= 1
         if(b == 0):
             return "divisao por 0"
@@ -35,19 +30,22 @@ def div(self):
         return "Bateria insuficiente"
 
 
-calcu = Calc()
-print("mostrar, iniciar_maxCarga, recarregar_valCarga")
-line = ""
-while line != "fim" :
-    line = input()
+calc = Calc()
 
-    if line == "recarregar":
-        recarregar(calcu)
-    elif line == "soma":
-        print(soma(calcu))
-    elif line == "divisao":
-        print(div(calcu))
-    elif line == "mostrar":
-        print(_str_(calcu))
+print("encerrar, mostrar, iniciar_valor, recarregar_valor, soma _a _b, divisao_a_b ")
+while True:
+    ui = input().split(" ")
+    if ui[0] == "encerrar":
+        break
+    elif ui[0] == "init":
+        calc = Calc()
+    elif ui[0] == "mostrar":
+        print(_str_(calc))
+    elif ui[0] == "recarregar":
+        recarregar(calc, int(ui[1]))
+    elif ui[0] == "soma":
+        print(soma(calc, int(ui[1]), int(ui[2])))
+    elif ui[0] == "divisao":
+        print(divisao(calc, int(ui[1]), int(ui[2])))
     else:
-        print("opcao invalida!")
+        print("comando invalido")
